@@ -26,14 +26,16 @@
                   hide-details
                 ></v-text-field>
                 <v-text-field
-                  label="Re-entry Password"
-                  v-model="password"
-                  type="password"
-                  prepend-icon="mdi-lock"
-                  class="rounded-input"
-                  outlined
-                  dense
-                  hide-details
+                 label="Re-enter Password"
+                 v-model="reenteredPassword"
+                 type="password"
+                 prepend-icon="mdi-lock"
+                 class="rounded-input"
+                 outlined
+                 dense
+                 hide-details
+                 :error-messages="passwordsMatch ? [] : ['Passwords do not match']"
+                 :error="!passwordsMatch"
                 ></v-text-field>
                 <div class="text-center my-3">  </div>
                 <v-btn class="w-100 rounded-btn secondary-btn" @click="signUp">SIGN UP</v-btn>
@@ -51,8 +53,14 @@
       return {
         email: '',
         password: '',
+        reenteredPassword: '',
       };
     },
+    computed: {
+    passwordsMatch() {
+      return this.password === this.reenteredPassword;
+        },
+     },
     methods: {
 
       signUp() {
