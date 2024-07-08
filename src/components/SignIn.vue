@@ -28,7 +28,6 @@
                 <div class="text-center my-3"></div>
                 <v-btn class="w-100 rounded-btn primary-btn" @click="signIn">SIGN IN</v-btn>
                 <div class="text-center my-3">or</div>
-                <!-- Button to redirect to SignUp.vue -->
                 <v-btn class="w-100 rounded-btn secondary-btn" @click="redirectToSignUp">New around here? JOIN THE FUN!</v-btn>
               </v-form>
             </v-card-text>

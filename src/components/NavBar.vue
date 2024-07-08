@@ -14,9 +14,16 @@
             Join Us
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Login</a></li>
-            <li><a class="dropdown-item" href="#">Sign up</a></li>
-            <!-- <li><hr class="dropdown-divider"></li> -->
+            <router-link to="/signin">
+          <v-list-item>
+            <v-list-item-title>Sign In</v-list-item-title>
+          </v-list-item>
+        </router-link>
+        <router-link to="/signup">
+          <v-list-item>
+            <v-list-item-title>Create an account</v-list-item-title>
+          </v-list-item>
+        </router-link>
           </ul>
         </li>
 </nav>
