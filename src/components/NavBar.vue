@@ -1,57 +1,71 @@
-<script>
-
-
-</script>
-
 <template>
-<nav class="nav nav-pills nav-fill all-caps navbar-custom text-uppercase font-weight-bold">
-  <a class="nav-link text-white" href="#">Characters</a>
-  <a class="nav-link text-white" href="#">Regions</a>
-  <img src="./icons/logo.png" alt="Logo" width="150"  class="d-inline-block align-text-top">
-  <a class="nav-link text-white" href="#">events</a>
-  <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Join Us
-          </a>
-          <ul class="dropdown-menu">
-            <router-link to="/signin">
-          <v-list-item>
-            <v-list-item-title>Sign In</v-list-item-title>
-          </v-list-item>
-        </router-link>
-        <router-link to="/signup">
-          <v-list-item>
-            <v-list-item-title>Create an account</v-list-item-title>
-          </v-list-item>
-        </router-link>
-          </ul>
-        </li>
-</nav>
+  <nav
+    class="nav nav-pills nav-fill all-caps navbar-custom text-uppercase font-weight-bold"
+  >
+    <li class="nav-item">
+      <a class="nav-link text-white" href="/character">Characters</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="/region">Regions</a>
+    </li>
+    <li class="nav-item">
+      <div @click="goHome()">
+        <img
+          src="./icons/logo.png"
+          alt="Logo"
+          width="150"
+          class="d-inline-block align-text-top"
+        />
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="/news">News</a>
+    </li>
+    <li class="nav-item">
+      <a v-if="!isLoggedIn" class="nav-link text-white" href="/signin">Login</a>
+      <a v-if="isLoggedIn" class="nav-link text-white" @click="logout" href="/">Logout</a>
+    </li>
+  </nav>
 </template>
+<script>
+import { mapState } from 'vuex';
+export default {
+  name: "NavBar",
+  methods: {
+    goHome() {
+      this.$router.replace("/");
+    },
+    logout(){
+        window.sessionStorage.removeItem('accessToken')
+        console.log('logged out')
+    }
+  },
+  computed: {
+    ...mapState(['isLoggedIn']),
+  },
+};
+</script>
 
 <style>
 .navbar-custom {
-      /* background-image: radial-gradient(circle, #FFFFFF, #04455F); */
-      background-color: #052536;
-      height: 60px;
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
+  /* background-image: radial-gradient(circle, #FFFFFF, #04455F); */
+  background-color: #052536;
+  height: 60px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
 }
 .nav-link.active {
-      /* color: #ffffff;  */
-      background-color: #FFFFFF; 
+  /* color: #ffffff;  */
+  background-color: #ffffff;
 }
-.clickable-item {
+/* .clickable-item {
   padding: 10px;
   border: 1px solid #ccc;
   cursor: pointer;
   transition: border-color 0.3s ease;
-}
+} */
 .outlined {
   border-color: #fff; /* White outline color */
 }
-
-
-
 </style>
