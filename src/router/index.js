@@ -13,7 +13,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: HomeView
     },
     {
@@ -34,12 +34,14 @@ const router = createRouter({
     {
       path: '/profile',
       name: 'Profile',
-      component: Profile
+      component: Profile,
+      meta: {requiresAuth: true}
     },
     {
       path: '/edit',
       name: 'Edit',
-      component: Edit
+      component: Edit,
+      meta: {requiresAuth: true}
     },
     {
       path: '/character',
@@ -51,7 +53,22 @@ const router = createRouter({
       name: 'region',
       component: RegionsView
     },
+    {
+      path: '/:catchAll(.*)',
+      redirect: '/signin'
+    }
   ]
 })
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !localStorage.getItem('accessToken')) {
+      next({name: 'SignIn'})
+  } else if (localStorage.getItem('accessToken')) {
+      // next({name: 'Profile'});
+      next();
+  } else {
+      next();
+  }
+})
+
 
 export default router

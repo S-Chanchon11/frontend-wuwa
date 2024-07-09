@@ -1,5 +1,6 @@
 <template>
   <div id="map" class="map"></div>
+  
     <div class="offcanvas offcanvas-start fade" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel" aria-hidden="true">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>

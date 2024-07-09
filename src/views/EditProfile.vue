@@ -1,6 +1,7 @@
 <!-- /edit -->
 <template>
     <v-app >
+      <!-- <NavBar></NavBar> -->
       <v-main >
         <v-container class="d-flex justify-center align-center fill-height">
             <v-card-text >
@@ -45,8 +46,12 @@
   </template>
   
   <script>
-  import axios from "axios"
+  import NavBar from "@/components/NavBar.vue";
+import axios from "axios"
   export default {
+    components:{
+      NavBar
+    },
     data() {
       return {
         //sample data (same as profileview)

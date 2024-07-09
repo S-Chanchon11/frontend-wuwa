@@ -1,5 +1,5 @@
 <template>
-  <NavBar></NavBar>
+  <!-- <NavBar></NavBar> -->
   <div class="app">
   
   <div class="character-container">
@@ -237,6 +237,9 @@
                 :title="modalCard.character_name"
                 :weapon="modalCard.weapon"
                 :element="modalCard.element"
+                :gender="modalCard.gender"
+                :type="modalCard.type"
+                :rarity="modalCard.rarity"
               />
   </div>
 
@@ -300,6 +303,7 @@ export default {
 }
 .card:hover {
   background-color: #1F2E24;
+  box-shadow: inset 4px 4px 10px #886F3D;
 }
 .card-container {
   display: flex;

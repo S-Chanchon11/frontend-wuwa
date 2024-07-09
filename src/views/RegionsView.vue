@@ -1,11 +1,7 @@
 <template>
   <div class="app">
-  <div>
-    <NavBar></NavBar>
-  </div>
-  <div>
+
     <ImageRegion />
-  </div>
 </div>
 </template>
 
@@ -16,7 +12,6 @@ import ImageRegion from "@/components/ImageRegion.vue";
 export default {
   name: "LeafletMap",
   components: {
-    NavBar,
     ImageRegion
   }
 };

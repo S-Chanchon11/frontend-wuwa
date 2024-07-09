@@ -30,7 +30,10 @@ const icons = {
     icons,
   })
   const app = createApp(App)
-  
+  const storedToken = localStorage.getItem('accessToken');
+  if (storedToken) {
+    store.commit('setAuthentication', { status: true, token: storedToken });
+  }
   app.use(router)
   app.use(vuetify)
   app.use(store)

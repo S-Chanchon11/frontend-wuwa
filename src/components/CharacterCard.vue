@@ -34,9 +34,12 @@ export default {
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #31193b;
-  border-color: #eec26b;
+  border-image: linear-gradient(165.52deg, #EEC26B -4.93%, #EEC26B -4.91%, #B38121 31.25%, #F8EBD1 48.25%, #EEC26B 55.76%, #B38121 85.52%, #EEC26B 109.45%);
   border-width: 10px;
+  border-image-slice: 1;
+  border-style: solid;
   color: aliceblue;
+  
 }
 
 .image-container {

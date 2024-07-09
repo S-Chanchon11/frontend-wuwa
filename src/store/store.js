@@ -9,18 +9,31 @@ export default createStore({
     isLoggedIn: false,
   },
   mutations: {
-    login(state) {
-      state.isLoggedIn = true;
+    login(state,isAuth) {
+      state.isLoggedIn = isAuth;
+    },
+    signup(state,isAuth) {
+      state.isLoggedIn = isAuth;
     },
     logout(state) {
       state.isLoggedIn = false;
     },
+    setAuthentication(state, { status, token }) {
+      state.isLoggedIn = status;
+      state.authToken = token;
+      if (status) {
+        localStorage.setItem('accessToken', token);
+      } else {
+        localStorage.removeItem('accessToken');
+      }
+    },
+  },
+  getters: {
+    isLoggedIn: (state) => state.isLoggedIn,
   },
   actions: {
     async login({ commit }, credentials) {
-      if (window.sessionStorage.getItem("token")) {
-        token = JSON.parse(window.sessionStorage.getItem("token"));
-      } else {
+  
         try {
 
           const response = await axios.post("http://127.0.0.1:3427/auth/login", credentials)
@@ -29,19 +42,38 @@ export default createStore({
 
             const accessToken = response.data["token"];
 
-            window.sessionStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("accessToken", accessToken);
 
-            commit('login')
+            commit('login',true)
             return response;
           }
         }
         catch (error) {
           alert("Invalid username or password");
         };
+      
+    },
+    async signup({ commit },credentials) {
+      try {
+
+        const response = await axios.post("http://127.0.0.1:3427/auth/register",credentials)
+
+        if (response.status === 200) {
+
+          const accessToken = response.data["token"];
+
+          localStorage.setItem("accessToken", accessToken);
+
+          commit('signup',true)
+          return response;
+        }
       }
+      catch (error) {
+        alert("Invalid username or password");
+      };
     },
     async logout({ commit }) {
-      window.sessionStorage.removeItem('accessToken')
+      localStorage.removeItem('accessToken')
       commit('logout');
     },
   },

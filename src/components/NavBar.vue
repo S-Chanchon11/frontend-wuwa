@@ -3,10 +3,10 @@
     class="nav nav-pills nav-fill all-caps navbar-custom text-uppercase font-weight-bold"
   >
     <li class="nav-item">
-      <a class="nav-link text-white" href="/character">Characters</a>
+      <router-link class="nav-link text-white" to="/character">Character</router-link>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-white" href="/region">Regions</a>
+      <router-link class="nav-link text-white" to="/region">Region</router-link>
     </li>
     <li class="nav-item">
       <div @click="goHome()">
@@ -19,30 +19,34 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-white" href="/news">News</a>
+      <router-link class="nav-link text-white" to="/news">News</router-link>
     </li>
     <li class="nav-item">
-      <a v-if="!isLoggedIn" class="nav-link text-white" href="/signin">Login</a>
-      <a v-if="isLoggedIn" class="nav-link text-white" href="/profile">Profile</a>
+      <router-link v-if="!isLoggedIn" class="nav-link text-white" to="/signin">Login</router-link>
+      <router-link v-if="isLoggedIn" class="nav-link text-white" to="/profile">Profile</router-link>
     </li>
   </nav>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
   name: "NavBar",
   methods: {
     goHome() {
-      this.$router.replace("/");
+      this.$router.push("/");
     },
     logout(){
-        window.sessionStorage.removeItem('accessToken')
+      localStorage.removeItem('accessToken')
         console.log('logged out')
     }
   },
   computed: {
-    ...mapState(['isLoggedIn']),
+    ...mapGetters(['isLoggedIn']),
   },
+  // mounted() {
+  //   mapGetters(['isLoggedIn'])
+  //   console.log(isLoggedIn)
+  // }
 };
 </script>
 

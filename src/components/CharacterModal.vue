@@ -16,9 +16,12 @@
 
         </div>
         <div class="modal-body">
-          {{ detail }}<br>
-          Element : {{ element }}<br>
-          Weapon : {{ weapon }}<br>
+          {{ detail }}<br><br>
+          <h3>Element : {{ element }}</h3>
+          <h3>Weapon : {{ weapon }}</h3>
+          <h3>Type : {{ type }}</h3>
+          <h3>Gender : {{ gender }}</h3>
+          <h3>Rarity : {{ rarity }}</h3>
         </div>
 
       </div>
@@ -62,11 +65,7 @@ export default {
       type: String,
       required: true,
     }
-  },
-  data() {
-    return {};
-  },
-  methods: {},
+  }
 };
 </script>
 

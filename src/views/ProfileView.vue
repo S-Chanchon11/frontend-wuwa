@@ -1,6 +1,7 @@
 <!-- /profile -->
 <template>
     <v-app >
+      <!-- <NavBar></NavBar> -->
       <v-main >
         <v-container class="d-flex justify-center align-center fill-height">
             <v-card-text >
@@ -44,8 +45,12 @@
   </template>
   
   <script>
+  import NavBar from "@/components/NavBar.vue";
   import axios from "axios"
   export default {
+    components:{
+      NavBar
+    },
     data() {
       return {
         // sameple data
@@ -63,7 +68,7 @@
         this.$router.replace('/edit')
       },
       logout(){
-        window.sessionStorage.removeItem('accessToken')
+        localStorage.removeItem('accessToken')
         this.$router.push("/");
         console.log('logged out')
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <NavBar></NavBar>
+    <!-- <NavBar></NavBar> -->
     <div>
       <video-player :options="videoOptions" />
     </div>

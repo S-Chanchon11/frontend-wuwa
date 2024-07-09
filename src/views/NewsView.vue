@@ -1,7 +1,7 @@
 <!-- /news -->
 <template>
   <v-app>
-    <NavBar></NavBar>
+    <!-- <NavBar></NavBar> -->
     <v-main>
       <v-container class="d-flex justify-center">
         <div
@@ -24,7 +24,7 @@
                 :aria-controls="'flush-collapse' + index"
                 style="background-color: #dcceaf"
               >
-                {{ item.date }} &nbsp;&nbsp; {{ item.events_type }} &nbsp;&nbsp;
+                 {{ item.events_type }} &nbsp;&nbsp;
                 {{ item.events_name }}
               </button>
             </h2>
@@ -34,7 +34,7 @@
               data-bs-parent="#accordionFlushExample"
             >
               <div class="accordion-body" style="background-color: #dcceaf">
-                {{ item.events_desc }}
+                {{ item.date }} &nbsp;&nbsp;<br>{{ item.events_desc }}
               </div>
             </div>
           </div>
