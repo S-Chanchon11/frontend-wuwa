@@ -23,7 +23,7 @@
     </li>
     <li class="nav-item">
       <a v-if="!isLoggedIn" class="nav-link text-white" href="/signin">Login</a>
-      <a v-if="isLoggedIn" class="nav-link text-white" @click="logout" href="/">Logout</a>
+      <a v-if="isLoggedIn" class="nav-link text-white" href="/profile">Profile</a>
     </li>
   </nav>
 </template>

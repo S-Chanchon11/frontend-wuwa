@@ -24,8 +24,8 @@
                 :aria-controls="'flush-collapse' + index"
                 style="background-color: #dcceaf"
               >
-                {{ item.date }} &nbsp;&nbsp; {{ item.type }} &nbsp;&nbsp;
-                {{ item.title }}
+                {{ item.date }} &nbsp;&nbsp; {{ item.events_type }} &nbsp;&nbsp;
+                {{ item.events_name }}
               </button>
             </h2>
             <div
@@ -34,7 +34,7 @@
               data-bs-parent="#accordionFlushExample"
             >
               <div class="accordion-body" style="background-color: #dcceaf">
-                {{ item.content }}{{ item.content }}{{ item.content }}
+                {{ item.events_desc }}
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
 
 <script>
 import NavBar from "@/components/NavBar.vue";
-
+import axios from "axios";
 export default {
   components: {
     NavBar,
@@ -54,36 +54,16 @@ export default {
   data() {
     return {
       //sample data
-      accordionItems: [
-        {
-          date: "05/07/24",
-          type: "PATCH",
-          title: "UPDATE 1.0",
-          content:
-            "DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION ",
-          headerColor: "#DCBE99", // Header background color
-          bodyColor: "#FFD700", // Body background color
-        },
-        {
-          date: "04/07/24",
-          type: "EVENTS",
-          title: "NEW YEAR CELEBRATION",
-          content:
-            "DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION",
-          headerColor: "#ADD8E6", // Header background color
-          bodyColor: "#FFFACD", // Body background color
-        },
-        {
-          date: "04/07/24",
-          type: "PATCH",
-          title: "UPDATE 0.9",
-          content:
-            "DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION",
-          headerColor: "#DCBE99", // Header background color
-          bodyColor: "#FFD700", // Body background color
-        },
-      ],
-    };
+      accordionItems: []
+    }
+  },
+  mounted() {
+    axios.get('http://127.0.0.1:3427/events')
+    .then((response)=>{
+      console.log(response.data)
+      this.accordionItems = response.data
+
+    })
   },
 };
 </script>

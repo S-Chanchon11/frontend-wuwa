@@ -34,6 +34,9 @@
                 </v-card>
                 </div>
               </v-form>
+              <button class="edit"  @click="logout">
+                Logout
+              </button>
             </v-card-text>
         </v-container>
       </v-main>
@@ -59,6 +62,11 @@
       edit(){
         this.$router.replace('/edit')
       },
+      logout(){
+        window.sessionStorage.removeItem('accessToken')
+        this.$router.push("/");
+        console.log('logged out')
+    }
       // methods: {
         
       // },
