@@ -14,31 +14,58 @@
             :key="index"
             class="accordion-item"
           >
-            <h2 class="accordion-header">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                :data-bs-target="'#flush-collapse' + index"
-                aria-expanded="false"
-                :aria-controls="'flush-collapse' + index"
-                style="background-color: #dcceaf"
+            <div v-if="item.events_type === 'update'">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  :data-bs-target="'#flush-collapse' + index"
+                  aria-expanded="false"
+                  :aria-controls="'flush-collapse' + index"
+                  style="background-color: #eedebf; font-weight: bold;"
+                >
+                  {{ item.events_type.toUpperCase() }} &nbsp;&nbsp;
+                  {{ item.events_name }}
+                </button>
+              </h2>
+              <div
+                :id="'flush-collapse' + index"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionFlushExample"
               >
-                 {{ item.events_type }} &nbsp;&nbsp;
-                {{ item.events_name }}
-              </button>
-            </h2>
-            <div
-              :id="'flush-collapse' + index"
-              class="accordion-collapse collapse"
-              data-bs-parent="#accordionFlushExample"
-            >
-              <div class="accordion-body" style="background-color: #dcceaf">
-                {{ item.date }} &nbsp;&nbsp;<br>{{ item.events_desc }}
+                <div class="accordion-body" style="background-color: #eedebf">
+                  {{ item.date }} &nbsp;&nbsp;<br>{{ item.events_desc }}
+                </div>
               </div>
-            </div>
+            </div><!-- if -->
+            <div v-if="item.events_type === 'event'">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  :data-bs-target="'#flush-collapse' + index"
+                  aria-expanded="false"
+                  :aria-controls="'flush-collapse' + index"
+                  style="background-color: #b5e0f9; font-weight: bold;"
+                >
+                  {{ item.events_type.toUpperCase() }} &nbsp;&nbsp;
+                  {{ item.events_name }}
+                </button>
+              </h2>
+              <div
+                :id="'flush-collapse' + index"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionFlushExample"
+              >
+                <div class="accordion-body" style="background-color: #b5e0f9">
+                  {{ item.date }} &nbsp;&nbsp;<br>{{ item.events_desc }}
+                </div>
+              </div>
+            </div><!-- if -->
           </div>
-        </div>
+        </div>  
       </v-container>
     </v-main>
   </v-app>
@@ -54,7 +81,20 @@ export default {
   data() {
     return {
       //sample data
-      accordionItems: []
+      accordionItems: [
+      //   {
+      //     events_type: 'event',
+      //     events_name: "name",
+      //     events_desc: "description",
+      //     date: '2/2/2'
+      //   },
+      //   {
+      //     events_type: 'update',
+      //     events_name: "name",
+      //     events_desc: "description",
+      //     date: '2/2/2'
+      // }    
+      ]  
     }
   },
   mounted() {
