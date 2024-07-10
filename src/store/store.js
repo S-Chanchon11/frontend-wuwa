@@ -1,8 +1,5 @@
-// import Vue from 'vue';
-// import Vuex from 'vuex';
 import axios from "axios";
 import { createStore } from 'vuex'
-// Vue.use(Vuex);
 
 export default createStore({
   state: {
@@ -15,8 +12,8 @@ export default createStore({
     signup(state,isAuth) {
       state.isLoggedIn = isAuth;
     },
-    logout(state) {
-      state.isLoggedIn = false;
+    logout(state,isAuth) {
+      state.isLoggedIn = isAuth;
     },
     setAuthentication(state, { status, token }) {
       state.isLoggedIn = status;
@@ -41,8 +38,10 @@ export default createStore({
           if (response.status === 200) {
 
             const accessToken = response.data["token"];
+            const id = response.data["user"]._id;
 
             localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("id", id);
 
             commit('login',true)
             return response;
@@ -74,7 +73,7 @@ export default createStore({
     },
     async logout({ commit }) {
       localStorage.removeItem('accessToken')
-      commit('logout');
+      commit('logout',false);
     },
   },
 });

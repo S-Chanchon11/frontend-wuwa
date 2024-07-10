@@ -11,7 +11,7 @@
           <v-card-text>
             <v-form>
               <v-text-field
-                label="Email"
+                label="EMAIL / Username"
                 v-model="formData.username"
                 prepend-icon="mdi-email"
                 class="rounded-input"
